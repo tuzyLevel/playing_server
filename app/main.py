@@ -1,14 +1,12 @@
-
 import os
-import uvicorn
-import dotenv
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from api.router import api_router
 
 from models.database import Base, engine
 
 
-dotenv.load_dotenv()
+load_dotenv(verbose=True, override=True)
 
 
 # setting mode and url, port
@@ -31,5 +29,5 @@ app = FastAPI()
 app.include_router(api_router, prefix="/api")
 
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host=url, port=port, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host=url, port=port, reload=True)

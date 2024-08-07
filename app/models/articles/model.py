@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, func
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, func
 from sqlalchemy.orm import relationship
 
 
@@ -11,10 +11,10 @@ class DefaultBase:
     updated_at = Column(DateTime, default=func.now())
 
 
-class User(Base, DefaultBase):
-    __tablename__ = "users"
+class Article(Base, DefaultBase):
+    __tablename__ = "articles"
 
     id = Column(Integer, primary_key=True)
-    email = Column(String(50), unique=True, index=True)
-    hashed_password = Column(String(50))
-    is_active = Column(Boolean, default=True)
+    title = Column(String(50), index=True)
+    content = Column(String(500))
+    read_count = Column(Integer, default=0)
